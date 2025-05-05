@@ -22,15 +22,15 @@ public class Manga {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private int id;
+	private Integer id;
 	
 	private String nombre;
 	private Date fecha_lanzamiento;
 	private Integer temporadas;
 	
-	private int anime;
-	private int juego;
-	private int pelicula;
+	private Integer anime;
+	private Integer juego;
+	private Integer pelicula;
 	
 	@ManyToOne
 	@JoinColumn(name = "pais_id")

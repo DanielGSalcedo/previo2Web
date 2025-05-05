@@ -27,4 +27,29 @@ public class Favorito {
         this.id = new FavoritoId(usuario.getUsername(), manga.getId());
     }
 
+	public FavoritoId getId() {
+		return id;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public Manga getManga() {
+		return manga;
+	}
+
+	public void setId(FavoritoId id) {
+		this.id = id;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public void setManga(Manga manga) {
+		this.manga = manga;
+	}
+
+
 }

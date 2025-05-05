@@ -13,11 +13,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.demo.entities.Favorito;
+import com.spring.demo.entities.FavoritoId;
 import com.spring.demo.entities.Manga;
 import com.spring.demo.entities.Usuario;
+import com.spring.demo.repositories.FavoritoRepository;
 import com.spring.demo.repositories.MangaRepository;
 import com.spring.demo.repositories.UsuarioRepository;
 
@@ -30,7 +35,10 @@ public class UsuarioController {
     
     @Autowired
     private MangaRepository mangaRepository;
-
+    
+    @Autowired
+    private FavoritoRepository favoritoRepository;
+    
     @GetMapping("/{username}/favoritos")
     public ResponseEntity<?>  obtenerFavoritos(@PathVariable String username) {
         Optional<Usuario> usuarioOpt = usuarioRepository.findByUsername(username);
@@ -96,5 +104,16 @@ public ResponseEntity<?> eliminarFavorito(@PathVariable String username, @PathVa
         "error", false,
         "msg", "Manga eliminado de favoritos"
     ));
+}
+@PostMapping("/usuarios/{id}/favoritos")
+public ResponseEntity<?> agregarFavorito(@PathVariable Integer id, @RequestBody Manga manga) {
+    Usuario usuario = usuarioRepository.findById(id).orElseThrow();
+    Favorito favorito = new Favorito();
+    
+    favorito.setUsuario(usuario);
+    favorito.setManga(manga); // Asegúrate de que Manga tenga su ID bien definido
+
+    favoritoRepository.save(favorito);
+    return ResponseEntity.ok().build();
 }
 }
