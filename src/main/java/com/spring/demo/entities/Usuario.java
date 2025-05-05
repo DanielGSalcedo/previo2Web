@@ -35,4 +35,38 @@ public class Usuario {
         inverseJoinColumns = @JoinColumn(name = "manga_id")
     )
     private List<Manga> favoritos = new ArrayList<>();
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public List<Manga> getFavoritos() {
+		return favoritos;
+	}
+
+	public void setFavoritos(List<Manga> favoritos) {
+		this.favoritos = favoritos;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+
 }
